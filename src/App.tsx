@@ -1,6 +1,4 @@
 import "./css/App.css";
-import MaterialForm from "./components/MaterialForm";
-import LaserForm from "./components/LaserForm";
 import Forms from "./components/Forms";
 import ContextProvider from "./context/appContext";
 

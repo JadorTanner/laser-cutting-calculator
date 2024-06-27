@@ -36,13 +36,50 @@ export function appReducer(state: AppState, action: AppActions): AppState {
         general: action.payload as General,
       };
     case AppActionsKinds.UPDATE_TOTAL_COST:
-      return {
-        ...state,
-        general: {
-          ...state.general,
-          finalCost: action.payload as number,
-        },
-      };
+      try {
+        const { width, height, length, time } = state.design;
+        const { power, speed, passes } = state.laser.cut;
+        const { materialCost, materialHeight, materialWidth } = state.material;
+        const { electricityCost, maintenancePercentage, profitMargin } =
+          state.general;
+
+        // Cálculo del costo de energía
+        const machinePower = 90;
+        const actualPower = (power / 100) * machinePower;
+        const timeInHours = time / 60;
+        const energyCost = actualPower * timeInHours * (electricityCost / 1000);
+
+        // Cálculo del costo del material
+        const materialArea = materialWidth * materialHeight;
+        const designArea = width * height;
+        const materialUsagePercentage = designArea / materialArea;
+        const materialCostUsed = materialCost * materialUsagePercentage;
+
+        // Cálculo del desgaste de la máquina
+        const totalCostBeforeMaintenance = energyCost + materialCostUsed;
+        const maintenanceCost =
+          totalCostBeforeMaintenance * maintenancePercentage;
+
+        // Cálculo del costo final con margen de beneficio
+        const totalCost = totalCostBeforeMaintenance + maintenanceCost;
+        const finalCost = totalCost * (1 + profitMargin);
+
+        return {
+          ...state,
+          general: {
+            ...state.general,
+            finalCost,
+          },
+        };
+      } catch (error) {
+        return {
+          ...state,
+          general: {
+            ...state.general,
+            finalCost: 0,
+          },
+        };
+      }
     default:
       return state;
   }

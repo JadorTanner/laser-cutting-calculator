@@ -12,7 +12,7 @@ export type AppState = {
 
 export const initialAppState: AppState = {
   material: {
-    materialCost: 30000,
+    materialCost: 56000,
     materialWidth: 400,
     materialHeight: 400,
   },

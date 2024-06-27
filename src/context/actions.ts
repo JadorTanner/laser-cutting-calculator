@@ -11,7 +11,7 @@ export enum AppActionsKinds {
 
 export interface AppActions {
   type: AppActionsKinds;
-  payload: string | number | Design | General | Material | LaserValues;
+  payload?: string | number | Design | General | Material | LaserValues;
 }
 
 export interface UpdateDesign {

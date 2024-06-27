@@ -14,7 +14,10 @@ const GeneralForm = () => {
         onChange={(e: any) => {
           dispatch({
             type: AppActionsKinds.UPDATE_SETTINGS,
-            payload: { ...general, [e.target.name]: e.target.value },
+            payload: {
+              ...general,
+              [e.target.name]: parseFloat(e.target.value),
+            },
           });
         }}
       >

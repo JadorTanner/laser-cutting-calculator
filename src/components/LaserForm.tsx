@@ -1,4 +1,3 @@
-// import { useAppContext } from "../context/AppContext";
 import { useAppContext } from "../context/appContext";
 import { AppActionsKinds } from "../context/actions";
 import Card from "./Card";

@@ -1,5 +1,3 @@
-import { inputClasses } from "../constants/styles";
-
 interface InputProps {
   value: string | number | string[];
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -24,7 +22,7 @@ const Input = ({
       onChange={onChange}
       placeholder={placeholder}
       name={name}
-      className={`block w-full px-4 text-sm text-gray-700 ${inputClasses} ${className}`}
+      className={`block w-full text-sm text-gray-700 border rounded-2xl mb-2 p-2 px-4 ${className}`}
     />
   );
 };
